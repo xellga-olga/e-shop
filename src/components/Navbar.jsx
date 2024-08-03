@@ -11,7 +11,7 @@ const Navbar = () => {
       <div className='container mx-auto px-4 md:px-16 lg:px-24 flex justify-between items-center'>
          <div className='text-lg font-bold'>
             <Link to='/'>
-              e-SHOP
+              E-SHOP
             </Link>
          </div>
 
