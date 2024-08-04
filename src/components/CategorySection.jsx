@@ -1,4 +1,3 @@
-import React from 'react';
 import ManCategory from '../assets/Images/men.avif';
 import WomenCategorie from '../assets/Images/women.avif';
 import KidsCategory from '../assets/Images/kids.avif';
