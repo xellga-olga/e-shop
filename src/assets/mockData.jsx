@@ -23,31 +23,31 @@ export const mockData = [
    {
       id: 1,
       image: Image1,
-      name: 'Product 1',
+      name: 'Fitness band',
       price: 3.99,
    },
    {
       id: 2,
       image: Image2,
-      name: 'Product 2',
+      name: 'Book',
       price: 1.99,
    },
    {
       id: 3,
       image: Image3,
-      name: 'Product 3',
+      name: 'Cap',
       price: 2.99,
    },
    {
       id: 4,
       image: Image4,
-      name: 'Product 4',
+      name: 'Bear toy set',
       price: 15.99,
    },
    {
       id: 5,
       image: Image5,
-      name: 'Product 5',
+      name: 'Makeup brush ',
       price: 2.99,
    },
 ]
