@@ -50,4 +50,34 @@ export const mockData = [
       name: 'Makeup brush ',
       price: 2.99,
    },
+   {
+      id: 6,
+      image: Image1,
+      name: 'Fitness band',
+      price: 3.99,
+   },
+   {
+      id: 7,
+      image: Image2,
+      name: 'Book',
+      price: 1.99,
+   },
+   {
+      id: 8,
+      image: Image3,
+      name: 'Cap',
+      price: 2.99,
+   },
+   {
+      id: 9,
+      image: Image4,
+      name: 'Bear toy set',
+      price: 15.99,
+   },
+   {
+      id: 10,
+      image: Image5,
+      name: 'Makeup brush ',
+      price: 2.99,
+   },
 ]
