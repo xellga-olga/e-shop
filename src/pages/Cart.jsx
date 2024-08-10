@@ -98,7 +98,7 @@ const Cart = () => {
             </div>
           </div>
           <Modal modalOpen={modalOpen} setModalOpen={setModalOpen}>
-            <ChangeAddress />
+            <ChangeAddress setAddress={setAddress} setModalOpen={setModalOpen}/>
           </Modal>
         </div>
       ) : null}
