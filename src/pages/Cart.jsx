@@ -5,6 +5,7 @@ import { useState } from "react";
 import Modal from "../components/Modal";
 import ChangeAddress from "../components/ChangeAddress";
 import { decreaseQuantity, increaseQuantity, removeFromCart } from "../redux/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 
 const Cart = () => {
@@ -12,6 +13,7 @@ const Cart = () => {
   const [address, setAddress] = useState("main street, 0001");
   const [modalOpen, setModalOpen] = useState(false);
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   return (
     <div className="container mx-auto py-8 px-4 md:px-16 lg:px-24 min-h-96 ">
@@ -102,7 +104,9 @@ const Cart = () => {
                 <span>Total Price:</span>
                 <span>{cart.totalPrice.toFixed(2)}</span>
               </div>
-              <button className="w-full text-white bg-red-600 py-2 hover:bg-red-800">
+              <button className="w-full text-white bg-red-600 py-2 hover:bg-red-800"
+              onClick={() => navigate('/checkout')}
+              >
                 Proced to Checkout
               </button>
             </div>
