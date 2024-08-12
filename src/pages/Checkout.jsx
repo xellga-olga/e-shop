@@ -208,8 +208,71 @@ const Checkout = () => {
                   Debit Card
                 </label>
               </div>
-              <p className="text-sm text-gray-700">Selected Payment Method: {paymentMethod}</p>
-
+              {paymentMethod === 'dc' && (
+                <div className="bg-slate-100">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-4">Debit Card Information</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <label
+                        htmlFor="cardNumber"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Card Number
+                      </label>
+                      <input
+                        id="cardNumber"
+                        type="text"
+                        placeholder="Enter Card Number"
+                        className="mt-1 block w-full p-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="cardHolderName"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Card Holder Name
+                      </label>
+                      <input
+                        id="cardHolderName"
+                        type="text"
+                        placeholder="Enter Card Holder Name"
+                        className="mt-1 block w-full p-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                      />
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label
+                          htmlFor="expireDate"
+                          className="block text-sm font-medium text-gray-700"
+                        >
+                          Expire Date
+                        </label>
+                        <input
+                          id="expireDate"
+                          type="text"
+                          placeholder="MM/YY"
+                          className="mt-1 block w-full p-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        />
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="cvv"
+                          className="block text-sm font-medium text-gray-700"
+                        >
+                          CVV
+                        </label>
+                        <input
+                          id="cvv"
+                          type="text"
+                          placeholder="CVV"
+                          className="mt-1 block w-full p-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
