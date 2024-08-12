@@ -1,12 +1,15 @@
 import { useState } from "react";
-import { FaAngleDown, FaAngleUp } from "react-icons/fa";
+import { FaAngleDown, FaAngleUp, FaShoppingCart } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const Checkout = () => {
   const [billing, setBilling] = useState(true);
   const [shipping, setShipping] = useState(false);
   const [payment, setPayment] = useState(false);
 
-  const [paymentMethod, setPaymentMethod] = useState('cod');
+  const [paymentMethod, setPaymentMethod] = useState("cod");
+
+  const cart = useSelector((state) => state.cart);
 
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
@@ -158,7 +161,7 @@ const Checkout = () => {
             </div>
           </div>
 
-          { /* PAYMENT METHOD  */}
+          {/* PAYMENT METHOD  */}
           <div className="border p-4 rounded-lg shadow-md">
             <div
               className="flex justify-between items-center cursor-pointer"
@@ -180,8 +183,8 @@ const Checkout = () => {
                   id="cod"
                   type="radio"
                   name="payment"
-                  checked={paymentMethod === 'cod'}
-                  onChange={() => setPaymentMethod('cod')}
+                  checked={paymentMethod === "cod"}
+                  onChange={() => setPaymentMethod("cod")}
                   className="mr-2"
                 />
                 <label
@@ -197,8 +200,8 @@ const Checkout = () => {
                   id="dc"
                   type="radio"
                   name="payment"
-                  checked={paymentMethod === 'dc'}
-                  onChange={() => setPaymentMethod('dc')}
+                  checked={paymentMethod === "dc"}
+                  onChange={() => setPaymentMethod("dc")}
                   className="mr-2"
                 />
                 <label
@@ -208,9 +211,11 @@ const Checkout = () => {
                   Debit Card
                 </label>
               </div>
-              {paymentMethod === 'dc' && (
-                <div className="bg-slate-100">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-4">Debit Card Information</h3>
+              {paymentMethod === "dc" && (
+                <div className="bg-slate-100 p-4 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                    Debit Card Information
+                  </h3>
                   <div className="space-y-4">
                     <div>
                       <label
@@ -277,8 +282,47 @@ const Checkout = () => {
           </div>
         </div>
 
-        <div className="md:w-1/3 bg-white p-6 rounded-lg shadow-md border">
-          {/* Additional content for checkout summary or order details */}
+        <div className="md:w-1/3 bg-white p-6 rounded-lg shadow-lg border relative">
+          <h3 className="text-lg font-semibold text-gray-600 p-2 rounded-lg border-b">
+            Order Summary
+          </h3>
+          <div className="space-y-4 border-t border-gray-200 pt-4">
+            {cart.products.map((product) => (
+              <div
+                key={product.id}
+                className="flex justify-between items-center rounded-lg p-2 border bg-gray-50 shadow-sm hover:bg-gray-100 transition"
+              >
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-12 h-12 object-cover rounded-md shadow"
+                />
+                <div className="flex-1 ml-4">
+                  <h4 className="text-sm font-medium text-gray-800">
+                    {product.name}
+                  </h4>
+                  <p className="text-sm text-gray-600">
+                    ${product.price} x {product.quantity}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-6 border-t border-gray-200 pt-4">
+            <span className="text-lg font-semibold text-gray-800">
+              Total Price:
+            </span>
+            <span className="text-xl font-bold text-gray-900 ml-2">
+              ${cart.totalPrice.toFixed(2)}
+            </span>
+          </div>
+          <div className="mt-6 w-full">
+            <button className="w-full text-lg font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 p-3 rounded-lg transition duration-300 ease-in-out shadow-lg hover:shadow-xl">
+              <FaShoppingCart className="inline mr-2" />
+              Place Order
+            </button>
+          </div>
         </div>
       </div>
     </div>
