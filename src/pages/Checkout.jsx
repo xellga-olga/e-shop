@@ -1,13 +1,20 @@
 import { useState } from "react";
 import { FaAngleDown, FaAngleUp, FaShoppingCart } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-const Checkout = () => {
+const Checkout = ({ setOrder }) => {
   const [billing, setBilling] = useState(true);
   const [shipping, setShipping] = useState(false);
   const [payment, setPayment] = useState(false);
 
   const [paymentMethod, setPaymentMethod] = useState("cod");
+
+  const [shippingInfo, setShippingInfo] = useState({
+    address: "",
+    city: "",
+    zip: "",
+  });
 
   const cart = useSelector((state) => state.cart);
 
@@ -21,6 +28,19 @@ const Checkout = () => {
     } else {
       setError("");
     }
+  };
+
+  const navigate = useNavigate();
+
+  const handleOrder = () => {
+    const newOrder = {
+      products: cart.products,
+      orderNumber: "12121",
+      shippingInformation: shippingInfo,
+      totalPrice: cart.totalPrice,
+    };
+    setOrder(newOrder);
+    navigate("/order-confirmation");
   };
 
   return (
@@ -125,6 +145,12 @@ const Checkout = () => {
                   type="text"
                   placeholder="Enter Your Address"
                   className="mt-1 block w-full p-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  onChange={(e) =>
+                    setShippingInfo({
+                      ...shippingInfo,
+                      address: e.target.value,
+                    })
+                  }
                 />
               </div>
 
@@ -140,6 +166,9 @@ const Checkout = () => {
                   type="text"
                   placeholder="Enter Your City"
                   className="mt-1 block w-full p-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  onChange={(e) =>
+                    setShippingInfo({ ...shippingInfo, city: e.target.value })
+                  }
                 />
               </div>
 
@@ -152,10 +181,13 @@ const Checkout = () => {
                 </label>
                 <input
                   id="zip"
+                  name="zip"
                   type="text"
                   placeholder="Enter Your Zip Code"
-                  pattern="[0-9]*"
                   className="mt-1 block w-full p-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  onChange={(e) =>
+                    setShippingInfo({ ...shippingInfo, zip: e.target.value })
+                  }
                 />
               </div>
             </div>
@@ -321,7 +353,10 @@ const Checkout = () => {
             </span>
           </div>
           <div className="mt-6 w-full">
-            <button className="w-full text-lg font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 p-3 rounded-lg transition duration-300 ease-in-out shadow-lg hover:shadow-xl">
+            <button
+              onClick={handleOrder}
+              className="w-full text-lg font-semibold text-white bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 p-3 rounded-lg transition duration-300 ease-in-out shadow-lg hover:shadow-xl"
+            >
               <FaShoppingCart className="inline mr-2" />
               Place Order
             </button>
