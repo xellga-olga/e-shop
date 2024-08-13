@@ -302,9 +302,12 @@ const Checkout = () => {
                     {product.name}
                   </h4>
                   <p className="text-sm text-gray-600">
-                    ${product.price} x {product.quantity}
+                    ${product.price.toFixed(2)} x {product.quantity}
                   </p>
                 </div>
+                <span className="text-sm font-light text-gray-600">
+                  ${(product.price * product.quantity).toFixed(2)}
+                </span>
               </div>
             ))}
           </div>
