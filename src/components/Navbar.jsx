@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import { FcSearch } from "react-icons/fc";
 import { HiShoppingCart } from "react-icons/hi2";
@@ -8,12 +8,16 @@ import { useState } from "react";
 import Modal from "./Modal";
 import Login from "./Login";
 import Register from "./Register";
+import { setSearchTerm } from "../redux/productSlice";
 
 const Navbar = () => {
   const products = useSelector((state) => state.cart.products);
 
   const [modelOpen, setModelOpen] = useState(false);
   const [login, setLogin] = useState(true);
+  const [search, setSearch] = useState();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const openSignUp = () => {
     setLogin(false);
@@ -25,6 +29,12 @@ const Navbar = () => {
     setModelOpen(true);
   };
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    dispatch(setSearchTerm(search));
+    navigate("/filter-data");
+  };
+
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="container mx-auto px-4 md:px-16 lg:px-24 flex justify-between items-center">
@@ -33,11 +43,12 @@ const Navbar = () => {
         </div>
 
         <div className="relative flex-1 mx-4">
-          <form>
+          <form onSubmit={handleSearch}>
             <input
               className="w-full border py-2 px-4"
               placeholder="Search Product"
               type="text"
+              onChange={(e) => setSearch(e.target.value)}
             />
             <FcSearch className="absolute top-3 right-3" />
           </form>
