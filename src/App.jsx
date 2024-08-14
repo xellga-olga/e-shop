@@ -8,6 +8,7 @@ import Checkout from "./pages/Checkout";
 import { useState } from "react";
 import Order from "./pages/Order";
 import Contact from "./pages/Contact"
+import About from "./pages/About";
 
 function App() {
   const [order, setOrder] = useState(null);
@@ -19,6 +20,7 @@ function App() {
         <Route path="/shop" element={<Shop />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
+        <Route path="/about" element={<About />}></Route>
         <Route
           path="/checkout"
           element={<Checkout setOrder={setOrder} />}
