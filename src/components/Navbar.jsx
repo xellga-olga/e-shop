@@ -71,10 +71,10 @@ const Navbar = () => {
         <Link className="hover:underline" to="/shop">
           Shop
         </Link>
-        <Link className="hover:underline" to="/">
+        <Link className="hover:underline" to="/contact">
           Contact
         </Link>
-        <Link className="hover:underline" to="/">
+        <Link className="hover:underline" to="about/">
           About
         </Link>
       </div>

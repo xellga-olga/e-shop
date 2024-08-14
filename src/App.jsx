@@ -7,6 +7,7 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import { useState } from "react";
 import Order from "./pages/Order";
+import Contact from "./pages/Contact"
 
 function App() {
   const [order, setOrder] = useState(null);
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/shop" element={<Shop />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
+        <Route path="/contact" element={<Contact />}></Route>
         <Route
           path="/checkout"
           element={<Checkout setOrder={setOrder} />}
