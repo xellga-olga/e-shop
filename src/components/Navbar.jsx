@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { FcSearch } from "react-icons/fc";
 import { HiShoppingCart } from "react-icons/hi2";
-import { BiUser } from "react-icons/bi";
+import { BiUser,  BiMenu } from "react-icons/bi";
 import { useState } from "react";
 import Modal from "./Modal";
 import Login from "./Login";
@@ -15,9 +15,10 @@ const Navbar = () => {
 
   const [modelOpen, setModelOpen] = useState(false);
   const [login, setLogin] = useState(true);
-  const [search, setSearch] = useState();
+  const [search, setSearch] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const openSignUp = () => {
     setLogin(false);
@@ -49,8 +50,9 @@ const Navbar = () => {
               placeholder="Search Product"
               type="text"
               onChange={(e) => setSearch(e.target.value)}
+              value={search}
             />
-            <FcSearch className="absolute top-3 right-3" />
+            <FcSearch className="absolute top-2 right-2 md:top-3 md:right-3 text-lg md:text-xl" />
           </form>
         </div>
 
@@ -72,10 +74,30 @@ const Navbar = () => {
           <button className="block md:hidden">
             <BiUser />
           </button>
+          <button className="block md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+            <BiMenu className="text-xl" />
+          </button>
         </div>
       </div>
 
-      <div className="flex items-center justify-center space-x-10 py-4 text-sm font-bold">
+      {menuOpen && (
+        <div className="flex flex-col items-center justify-center bg-white shadow-md py-4 text-sm font-bold space-y-4 md:hidden">
+          <Link className="hover:underline" to="/" onClick={() => setMenuOpen(false)}>
+            Home
+          </Link>
+          <Link className="hover:underline" to="/shop" onClick={() => setMenuOpen(false)}>
+            Shop
+          </Link>
+          <Link className="hover:underline" to="/contact" onClick={() => setMenuOpen(false)}>
+            Contact
+          </Link>
+          <Link className="hover:underline" to="about/" onClick={() => setMenuOpen(false)}>
+            About
+          </Link>
+        </div>
+      )}
+
+      <div className="hidden md:flex items-center justify-center space-x-10 py-4 text-sm font-bold">
         <Link className="hover:underline" to="/">
           Home
         </Link>

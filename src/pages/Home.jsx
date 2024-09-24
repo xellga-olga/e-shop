@@ -38,11 +38,11 @@ const Home = () => {
           </div>
 
           <div className="w-full md:w-9/12 md:mt-0 h-96 mt-8 relative">
-            <img src={HeroImage} alt="HeroImage" className="h-full w-full" />
-            <div className="absolute top-16 left-8">
-              <p className="mb-4 text-gray-600">Code With OlyaPla</p>
-              <h2 className="text-3xl font-bold">WELCOME TO E-SHOP</h2>
-              <p className="text-gray-800 text-xl mt-2.5 font-bold">
+            <img src={HeroImage} alt="HeroImage" className="h-full w-full object-cover" />
+            <div className="absolute top-8 left-4 sm:top-16 sm:left-8">
+              <p className="mb-2 sm:mb-4 text-gray-600 text-sm sm:text-base">Code With OlyaPla</p>
+              <h2 className="sm:text-3xl text-2xl font-bold">WELCOME TO E-SHOP</h2>
+              <p className="text-gray-800 sm:text-xl mt-1 sm:mt-2.5font-bold">
                 MILLIONS + PRODUCTS
               </p>
               <button className="text-white bg-red-600 px-8 py-1.5 mt-4 hover:bg-red-700 transform transition-transform duration-300 hover:scale-105">

@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { FaCarSide, FaQuestion } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { addToCart } from "../redux/cartSlice"; 
+import { addToCart } from "../redux/cartSlice";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const products = useSelector((state) => state.product.products);
   const [product, setProduct] = useState();
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const newProduct = products.find((product) => product.id === parseInt(id));
@@ -19,7 +19,7 @@ const ProductDetail = () => {
     return <div className="text-center text-xl py-10">Loading...</div>;
 
   const handleAddToCart = () => {
-    dispatch(addToCart(product)); 
+    dispatch(addToCart(product));
   };
 
   return (
@@ -44,7 +44,6 @@ const ProductDetail = () => {
           </p>
 
           <div className="flex items-center mb-6 gap-x-4">
-          
             <button
               className="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition duration-300 ease-in-out"
               onClick={handleAddToCart}
@@ -62,10 +61,7 @@ const ProductDetail = () => {
             <p className="flex items-center">
               <FaQuestion className="mr-2 text-xl text-red-600" />
               Have a Question?
-              <Link
-                to="/contact"
-                className="text-red-600 hover:underline ml-2"
-              >
+              <Link to="/contact" className="text-red-600 hover:underline ml-2">
                 Ask Us
               </Link>
             </p>
