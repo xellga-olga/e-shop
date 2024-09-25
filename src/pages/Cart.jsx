@@ -20,11 +20,11 @@ const Cart = () => {
       {cart.products.length > 0 ? (
         <div>
           <h3 className="text-2xl font-semibold mb-4">SHOPPING CART</h3>
-          <div className="flex flex-col justify-between mt-8 space-x-10 md:flex-row">
+          <div className="flex flex-col justify-between mt-8 space-x-10 md:flex-row md:space-x-10">
             <div className="md:w-2/3">
               <div className="flex justify-between border-b text-xs items-center font-bold mb-4">
                 <p>PRODUCTS</p>
-                <div className="flex space-x-8">
+                <div className="hidden md:flex space-x-8">
                   <p>PRICE</p>
                   <p>QUANTITY</p>
                   <p>SUBTOTAL</p>
@@ -36,36 +36,36 @@ const Cart = () => {
                 {cart.products.map((product) => (
                   <div
                     key={product.id}
-                    className="flex items-center justify-between border-b p-3"
+                    className="flex flex-col md:flex-row items-center justify-between border-b p-3 space-y-4 md:space-y-0"
                   >
-                    <div className="md:flex items-center space-x-4">
+                    <div className="flex flex-col md:flex-row md:items-center space-x-0 md:space-x-4">
                       <img
                         src={product.image}
                         alt={product.name}
-                        className="w-16 h-16 object-contain rounded"
+                        className="w-24 h-24 object-contain rounded"
                       />
-                      <div className="flex-1 ml-4">
+                      <div className="flex-1 text-center md:text-left">
                         <h3 className="text-lg font-semibold">
                           {product.name}
                         </h3>
                       </div>
                     </div>
-                    <div className="flex space-x-12 items-center">
-                      <p>${product.price}</p>
+                    <div className="flex flex-col space-y-4 md:space-y-0 md:flex-row md:space-x-12 items-center">
+                      <p className="text-sm md:text-base">${product.price}</p>
                       <div className="flex border items-center justify-center">
                         <button className="border-r text-xl font-bold px-1.5"
                         onClick={() => dispatch(decreaseQuantity(product.id))}
                         >
                           -
                         </button>
-                        <p className="px-2 text-l">{product.quantity}</p>
+                        <p className="px-2 text-sm md:text-base">{product.quantity}</p>
                         <button className="border-r text-xl font-bold px-1.5"
                         onClick={() => dispatch(increaseQuantity(product.id))}
                         >
                           +
                         </button>
                       </div>
-                      <p>${(product.quantity * product.price).toFixed(2)}</p>
+                      <p className="text-sm md:text-base">${(product.quantity * product.price).toFixed(2)}</p>
                       <button 
                         className="text-red-600 hover:text-red-800"
                         onClick={() => dispatch(removeFromCart(product.id))}
@@ -78,6 +78,8 @@ const Cart = () => {
               </div>
             </div>
 
+
+            {/* Cart Summary Section */}
             <div className="md:w-1/3 bg-white p-6 rounded-lg shadow-md border">
               <h3 className="text-sm font-semibold mb-5">CART TOTAL</h3>
               <div className="flex mb-5 justify-between border-b pb-1">
